@@ -6,68 +6,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import de.joeakeem.m28BYJ48.StepperMotor28BYJ48;
-import de.joeakeem.scratch.rsp.RemoteSensor;
-import de.joeakeem.scratch.rsp.Scratch14Instance;
-
 @Component
-public class Robot implements RemoteSensor {
+public class Robot {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(Robot.class);
 	
-	private static final String MOVE_FORWARD_BROADCAST_MESSAGE = "forward";
-	private static final String TURN_LEFT_BROADCAST_MESSAGE = "left";
-	private static final String TURN_RIGHT_BROADCAST_MESSAGE = "right";
+	@Autowired @Qualifier("leftMotorSensor")
+	private MotorSensor leftMotorSensor;
 	
-	@Autowired
-	private Scratch14Instance scratch;
-	
-	@Autowired @Qualifier("leftMotor")
-	private StepperMotor28BYJ48 leftMotor;
-	
-	@Autowired @Qualifier("rightMotor")
-	private StepperMotor28BYJ48 rightMotor;
+	@Autowired @Qualifier("rightMotorSensor")
+	private MotorSensor rightMotorSensor;
 
 	public void start() {
 		LOG.info("Starting Scratch Robot...");
-		scratch.registerRemoteSensor(this);
-		Thread sensorThread = scratch.connect();
-		LOG.info("Connected to Scratch on host {} and port {}", scratch.getHost(), scratch.getPort());
+		Thread leftMotorSeonsorThread = leftMotorSensor.connect();
+		LOG.info("Left motor sensor connected to Scratch on host {} and port {}", leftMotorSensor.getScratchHost(), leftMotorSensor.getScratchPort());
+		Thread rightMotorSeonsorThread = rightMotorSensor.connect();
+		LOG.info("Right motor sensor connected to Scratch on host {} and port {}", rightMotorSensor.getScratchHost(), rightMotorSensor.getScratchPort());
 		try {
-			sensorThread.join();
+			leftMotorSeonsorThread.join();
+			rightMotorSeonsorThread.join();
 		} catch (InterruptedException e) {
 		}
-	}
-
-	@Override
-	public void broadcast(String message) {
-		
-		if (MOVE_FORWARD_BROADCAST_MESSAGE.equals(message)) {
-			LOG.info("Moving straight");
-			leftMotor.step(1);
-			rightMotor.step(1);
-		} else if (TURN_LEFT_BROADCAST_MESSAGE.equals(message)) {
-			LOG.info("Turning left");
-			rightMotor.step(1);
-		} else if (TURN_RIGHT_BROADCAST_MESSAGE.equals(message)) {
-			LOG.info("Turning right");
-			leftMotor.step(1);
-		}
-	}
-
-	@Override
-	public void sensorUpdate(String name, String value) {
-	}
-
-	@Override
-	public void sensorUpdate(String name, double value) {
-	}
-
-	@Override
-	public void sensorUpdate(String name, boolean value) {
-	}
-
-	@Override
-	public void otherMessage(String message) {
 	}
 }
