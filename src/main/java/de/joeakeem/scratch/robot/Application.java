@@ -14,7 +14,6 @@ import org.springframework.core.env.Environment;
 
 import de.joeakeem.m28BYJ48.StepperMotor28BYJ48;
 import de.joeakeem.m28BYJ48.StepperMotor28BYJ48.SteppingMethod;
-import de.joeakeem.scratch.rsp.RemoteSensor;
 
 @SpringBootApplication
 public class Application {
