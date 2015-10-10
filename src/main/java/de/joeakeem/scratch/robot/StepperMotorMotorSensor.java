@@ -2,10 +2,15 @@ package de.joeakeem.scratch.robot;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.joeakeem.m28BYJ48.StepperMotor28BYJ48;
 import de.joeakeem.scratch.rsp.RemoteSensor;
 
 public class StepperMotorMotorSensor extends RemoteSensor {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(StepperMotorMotorSensor.class);
 	
 	private String name;
 	private List<String> commandsToReactOn;
@@ -15,6 +20,7 @@ public class StepperMotorMotorSensor extends RemoteSensor {
 	@Override
 	public void broadcast(String message) {
 		if (commandsToReactOn.contains(message)) {
+			LOG.info("{} motor moving", name);
 			motor.step(1);
 		}
 	}
