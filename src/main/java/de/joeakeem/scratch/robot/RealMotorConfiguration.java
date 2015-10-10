@@ -43,8 +43,8 @@ public class RealMotorConfiguration {
 	}
 	
 	@Bean(name="leftMotorSensor")
-	public StepperMotorMotorSensor getLeftMotorSensor(@Qualifier("leftMotor") StepperMotor28BYJ48 leftMotor) {
-		StepperMotorMotorSensor motorSensor = new StepperMotorMotorSensor();
+	public StepperMotorSensor getLeftMotorSensor(@Qualifier("leftMotor") StepperMotor28BYJ48 leftMotor) {
+		StepperMotorSensor motorSensor = new StepperMotorSensor();
 		motorSensor.setName("Left");
 		motorSensor.setScratchHost(env.getProperty("scratch.host", "localhost"));
 		motorSensor.setScratchPort(Integer.parseInt(env.getProperty("scratch.port", "42001")));
@@ -57,8 +57,8 @@ public class RealMotorConfiguration {
 	}
 	
 	@Bean(name="rightMotorSensor")
-	public StepperMotorMotorSensor getRightMotorSensor(@Qualifier("rightMotor") StepperMotor28BYJ48 rightMotor) {
-		StepperMotorMotorSensor motorSensor = new StepperMotorMotorSensor();
+	public StepperMotorSensor getRightMotorSensor(@Qualifier("rightMotor") StepperMotor28BYJ48 rightMotor) {
+		StepperMotorSensor motorSensor = new StepperMotorSensor();
 		motorSensor.setName("Right");
 		motorSensor.setScratchHost(env.getProperty("scratch.host", "localhost"));
 		motorSensor.setScratchPort(Integer.parseInt(env.getProperty("scratch.port", "42001")));
