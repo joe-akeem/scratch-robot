@@ -25,9 +25,9 @@ import de.joeakeem.m28BYJ48.StepperMotor28BYJ48.SteppingMethod;
 @Profile("realMotor")
 public class RealMotorConfiguration {
 	
-	private static final String MOVE_FORWARD_BROADCAST_MESSAGE = "forward";
-	private static final String TURN_LEFT_BROADCAST_MESSAGE = "left";
-	private static final String TURN_RIGHT_BROADCAST_MESSAGE = "right";
+	private static final String MOVE_FORWARD_BROADCAST_MESSAGE = "vor";
+	private static final String TURN_LEFT_BROADCAST_MESSAGE = "links";
+	private static final String TURN_RIGHT_BROADCAST_MESSAGE = "rechts";
 	
 	@Autowired
 	private Environment env;
