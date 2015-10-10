@@ -34,12 +34,12 @@ public class RealMotorConfiguration {
 	
 	@Bean(name="leftMotor")
 	public StepperMotor28BYJ48 getLeftMotor() {
-		return new StepperMotor28BYJ48(GPIO_07, GPIO_00, GPIO_02, GPIO_03, 3, SteppingMethod.FULL_STEP);
+		return new StepperMotor28BYJ48(GPIO_01, GPIO_04, GPIO_05, GPIO_06, 3, SteppingMethod.FULL_STEP);
 	}
 	
 	@Bean(name="rightMotor")
 	public StepperMotor28BYJ48 getRightMotor() {
-		return new StepperMotor28BYJ48(GPIO_01, GPIO_04, GPIO_05, GPIO_06, 3, SteppingMethod.FULL_STEP);
+		return new StepperMotor28BYJ48(GPIO_07, GPIO_00, GPIO_02, GPIO_03, 3, SteppingMethod.FULL_STEP);
 	}
 	
 	@Bean(name="leftMotorSensor")
@@ -53,6 +53,7 @@ public class RealMotorConfiguration {
 		commandsToReactOn.add(MOVE_FORWARD_BROADCAST_MESSAGE);
 		commandsToReactOn.add(TURN_RIGHT_BROADCAST_MESSAGE);
 		motorSensor.setCommandsToReactOn(commandsToReactOn);
+		motorSensor.setDirection(-1);
 		return motorSensor;
 	}
 	

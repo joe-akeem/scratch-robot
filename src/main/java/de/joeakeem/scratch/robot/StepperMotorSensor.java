@@ -15,6 +15,7 @@ public class StepperMotorSensor extends RemoteSensor {
 	private static final Logger LOG = LoggerFactory.getLogger(StepperMotorSensor.class);
 	
 	private String name;
+	private int direction = 1;
 	private List<String> commandsToReactOn;
 	
 	private StepperMotor28BYJ48 motor;
@@ -28,7 +29,7 @@ public class StepperMotorSensor extends RemoteSensor {
 	public void broadcast(String message) {
 		if (commandsToReactOn.contains(message)) {
 			LOG.info("{} motor moving", name);
-			motor.step(1);
+			motor.step(direction * 100);
 		}
 	}
 
@@ -70,5 +71,13 @@ public class StepperMotorSensor extends RemoteSensor {
 
 	public void setMotor(StepperMotor28BYJ48 motor) {
 		this.motor = motor;
+	}
+
+	public int getDirection() {
+		return direction;
+	}
+
+	public void setDirection(int direction) {
+		this.direction = direction;
 	}
 }
