@@ -6,16 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import de.joeakeem.scratch.rsp.RemoteSensor;
+
 @Component
 public class Robot {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(Robot.class);
 	
 	@Autowired @Qualifier("leftMotorSensor")
-	private MotorSensor leftMotorSensor;
+	private RemoteSensor leftMotorSensor;
 	
 	@Autowired @Qualifier("rightMotorSensor")
-	private MotorSensor rightMotorSensor;
+	private RemoteSensor rightMotorSensor;
 
 	public void start() {
 		LOG.info("Starting Scratch Robot...");

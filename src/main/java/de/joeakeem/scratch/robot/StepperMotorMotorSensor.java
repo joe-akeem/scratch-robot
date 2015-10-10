@@ -5,7 +5,7 @@ import java.util.List;
 import de.joeakeem.m28BYJ48.StepperMotor28BYJ48;
 import de.joeakeem.scratch.rsp.RemoteSensor;
 
-public class MotorSensor extends RemoteSensor {
+public class StepperMotorMotorSensor extends RemoteSensor {
 	
 	private String name;
 	private List<String> commandsToReactOn;
