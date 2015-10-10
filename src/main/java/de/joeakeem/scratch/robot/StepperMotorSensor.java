@@ -20,11 +20,6 @@ public class StepperMotorSensor extends RemoteSensor {
 	
 	private StepperMotor28BYJ48 motor;
 	
-	@PostConstruct
-	public void demoMotor() {
-		motor.performDemo();
-	}
-	
 	@Override
 	public void broadcast(String message) {
 		if (commandsToReactOn.contains(message)) {
