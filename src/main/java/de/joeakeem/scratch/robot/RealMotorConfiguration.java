@@ -18,6 +18,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 
+import com.pi4j.io.gpio.RaspiPin;
+
 import de.joeakeem.m28BYJ48.StepperMotor28BYJ48;
 import de.joeakeem.m28BYJ48.StepperMotor28BYJ48.SteppingMethod;
 
@@ -69,5 +71,10 @@ public class RealMotorConfiguration {
 		commandsToReactOn.add(TURN_LEFT_BROADCAST_MESSAGE);
 		motorSensor.setCommandsToReactOn(commandsToReactOn);
 		return motorSensor;
+	}
+	
+	@Bean
+	public MotionDetector getMotionDetector() {
+		return new PirMotionDetector(RaspiPin.GPIO_12);
 	}
 }

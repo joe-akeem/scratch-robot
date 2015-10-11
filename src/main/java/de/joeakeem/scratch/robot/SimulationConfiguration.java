@@ -42,4 +42,9 @@ public class SimulationConfiguration {
 		commandsToReactOn.add(TURN_LEFT_BROADCAST_MESSAGE);
 		return motorSensor;
 	}
+	
+	@Bean
+	public MotionDetector getMotionDetector() {
+		return new SimulationMotionDetector();
+	}
 }
