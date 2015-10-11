@@ -45,6 +45,9 @@ public class SimulationConfiguration {
 	
 	@Bean
 	public MotionDetector getMotionDetector() {
-		return new SimulationMotionDetector();
+		SimulationMotionDetector motionDetector = new SimulationMotionDetector();
+		motionDetector.setScratchHost(env.getProperty("scratch.host", "localhost"));
+		motionDetector.setScratchPort(Integer.parseInt(env.getProperty("scratch.port", "42001")));
+		return motionDetector;
 	}
 }

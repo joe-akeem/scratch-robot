@@ -75,6 +75,9 @@ public class RealMotorConfiguration {
 	
 	@Bean
 	public MotionDetector getMotionDetector() {
-		return new PirMotionDetector(RaspiPin.GPIO_12);
+		PirMotionDetector pir = new PirMotionDetector(RaspiPin.GPIO_12);
+		pir.setScratchHost(env.getProperty("scratch.host", "localhost"));
+		pir.setScratchPort(Integer.parseInt(env.getProperty("scratch.port", "42001")));
+		return pir;
 	}
 }
